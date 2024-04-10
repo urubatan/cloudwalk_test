@@ -27,7 +27,7 @@ class QuakeConsoleReport
       report[name] = game
     end
     ranking = Hash.new(0)
-    report.values.each do |game|
+    report.each_value do |game|
       game[:kills].each do |player, kill_count|
         ranking[player] += kill_count
       end

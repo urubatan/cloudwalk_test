@@ -1,12 +1,18 @@
-ENV["RAILS_ENV"] ||= "test"
-require_relative "../config/environment"
-require "rails/test_help"
+ENV['RAILS_ENV'] ||= 'test'
+require_relative '../config/environment'
+require 'rails/test_help'
 
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
-
+    parallelize_setup do |i|
+      ActiveStorage::Blob.service.root = "#{ActiveStorage::Blob.service.root}-#{i}"
+    end
+    def after_teardown
+      super
+      FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+    end
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
