@@ -2,12 +2,12 @@ require 'test_helper'
 
 class QuakeLogParserTest < ActiveSupport::TestCase
   test 'identify games' do
-    log_parser = QuakeLogParser.new(Rails.root.join('test/assets/four_games.log'))
+    log_parser = QuakeLogParser.new(Rails.root.join('test/fixtures/files/four_games.log'))
     log_parser.parse
     assert_equal log_parser.game_list.count, 4
   end
   test 'identify kills in each game' do
-    log_parser = QuakeLogParser.new(Rails.root.join('test/assets/game_with_kills.log'))
+    log_parser = QuakeLogParser.new(Rails.root.join('test/fixtures/files/game_with_kills.log'))
     @game = nil
     log_parser.parse do |game|
       @game = game
@@ -21,7 +21,7 @@ class QuakeLogParserTest < ActiveSupport::TestCase
     assert @game
   end
   test 'identify number of users in each game' do
-    log_parser = QuakeLogParser.new(Rails.root.join('test/assets/game_with_kills.log'))
+    log_parser = QuakeLogParser.new(Rails.root.join('test/fixtures/files/game_with_kills.log'))
     @game = nil
     log_parser.parse do |game|
       @game = game

@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+LIB_DIR = File.expand_path("../lib", __dir__)
+$LOAD_PATH.unshift LIB_DIR
+require "quake_log_parser"
+require "quake_console_report"
+
+reporter = QuakeConsoleReport.new(ARGV[0])
+puts reporter.print_report

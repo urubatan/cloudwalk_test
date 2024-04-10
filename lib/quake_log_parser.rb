@@ -1,7 +1,9 @@
 # frozen_string_literal: true
+require 'set'
 
 # Log parser for Quake log files
 # It'll infer events and kills, but won't check all the log entries
+# this log reader is implemented using streaming so that it won't use too much memory if a huge log file is uploaded
 class QuakeLogParser
   attr_accessor :game_list
 
@@ -15,8 +17,7 @@ class QuakeLogParser
     parse_events do |time, event, data|
       case event
       when 'InitGame'
-        if @current_game.present?
-          Rails.logger.warn('Missing ShutdownGame entry, logfile might have issues')
+        unless @current_game.nil?
           @current_game[:end_time] = time
           if block_given?
             yield(@current_game)
