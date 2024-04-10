@@ -1,0 +1,41 @@
+body {
+  height: 100vh;
+}
+
+.my-grid {
+  height: calc(100% - 120px);
+  display:grid;
+  grid-template-columns: 200px auto;
+}
+
+article.grid .list {
+  border: 1px solid black;
+}
+
+.report {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 200px auto;
+  height: 100%
+}
+
+.content {
+  overflow: visible;
+}
+
+.games {
+  display: block;
+  border: 1px inset black;
+  padding: 5px;
+}
+
+.game {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: auto auto auto;
+  border-bottom: 1px inset black;
+}
+
+.buttons {
+  grid-column: 1 / span 2;
+}

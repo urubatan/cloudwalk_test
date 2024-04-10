@@ -1,0 +1,22 @@
+<%= form_with(model: uploaded_log, data: {turbo_stream: true}) do |form| %>
+  <% if uploaded_log.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(uploaded_log.errors.count, "error") %> prohibited this uploaded_log from being saved:</h2>
+
+      <ul>
+        <% uploaded_log.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :logfile, style: "display: block" %>
+    <%= form.file_field :logfile %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

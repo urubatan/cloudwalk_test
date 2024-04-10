@@ -1,0 +1,2 @@
+<%= turbo_stream.remove "uploaded_uploaded_log_#{@uploaded_log.id}" %>
+<%= turbo_stream.replace 'content', partial: 'notice', locals: { notice: 'Log file removed.' }%>

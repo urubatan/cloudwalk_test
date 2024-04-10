@@ -1,0 +1,9 @@
+<div id="uploaded_<%= dom_id uploaded_log %>">
+  <p>
+    <strong>View File:</strong>
+    <%= link_to uploaded_log.logfile.filename, uploaded_log.logfile if uploaded_log.logfile.attached? %>
+  </p>
+  <p>
+    <%= link_to 'View Report', uploaded_log, data: {turbo_frame: 'content'}%>
+  </p>
+</div>

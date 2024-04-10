@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend 'list', partial: 'uploaded_log', locals: { uploaded_log: @uploaded_log } %>
+<%= turbo_stream.replace 'content', partial: 'notice', locals: { notice: 'Uploaded log was successfully created.' }%>

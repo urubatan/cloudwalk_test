@@ -20,7 +20,7 @@ class QuakeConsoleReport
         game[:kills_by_means][hash_kill[:how]] += 1
         if hash_kill[:killer] == '<world>'
           game[:kills][hash_kill[:dead]] -= 1
-        else
+        elsif hash_kill[:dead] != hash_kill[:killer]
           game[:kills][hash_kill[:killer]] += 1
         end
       end

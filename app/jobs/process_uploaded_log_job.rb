@@ -11,7 +11,7 @@ class ProcessUploadedLogJob < ApplicationJob
         uploaded_log.player_rankings.create player: player
       end
       report.select { |k, _v| k =~ /game_/ }.each_value do |raw_game|
-        game = uploaded_log.games.create(raw_game.slice(:total_kills))
+        game = uploaded_log.games.create(raw_game.slice(:total_kills).merge(player_names: raw_game[:players]&.join(", ")))
         raw_game[:kills].each do |player, kill_count|
           game.players.create name: player, kill_count: kill_count
         end

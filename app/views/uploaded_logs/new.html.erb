@@ -1,0 +1,8 @@
+<%= turbo_frame_tag 'content' do %>
+  <h1>New uploaded log</h1>
+  <%= render "form", uploaded_log: @uploaded_log %>
+<% end %>
+<br>
+<div>
+  <%= link_to "Back to uploaded logs", uploaded_logs_path %>
+</div>

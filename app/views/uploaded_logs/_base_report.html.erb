@@ -1,0 +1,42 @@
+<%= turbo_frame_tag 'content' do %>
+  <div class="report">
+    <div class="rankings">
+      <strong>Player Ranking</strong>
+      <ol>
+        <% @uploaded_log.player_rankings.each do |player| %>
+          <li><%= player.player %></li>
+        <% end %>
+      </ol>
+    </div>
+    <div class="games">
+      <% @uploaded_log.games.each_with_index do |game, idx| %>
+        <div class="game">
+          <div class="game-details">
+            <strong>Game <%= idx + 1 %></strong>
+            <p>Total Kills: <%= game.total_kills %></p>
+            <p>Player Names: <%= game.player_names %></p>
+          </div>
+          <div class="player-kills">
+            <strong>Player Kills</strong>
+            <ul>
+              <% game.players.each do |player| %>
+                <li><%= player.name %> -&gt; <%= player.kill_count%> kill points</li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="kill-by-means">
+            <strong>Kill by means</strong>
+            <ul>
+              <% game.kill_by_means.each do |kill| %>
+                <li><%= kill.mean %> -&gt; <%= kill.kill_count%> kills</li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="buttons">
+      <%= link_to "Destroy this uploaded log", @uploaded_log, data: {turbo_stream: true, "turbo-method": :delete} %>
+    </div>
+  </div>
+<% end %>
