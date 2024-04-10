@@ -5,5 +5,8 @@ $LOAD_PATH.unshift LIB_DIR
 require "quake_log_parser"
 require "quake_console_report"
 
+
+raise "Please run: #{__FILE__} <quake log file>" if ARGV[0].nil? || !File.exists?(ARGV[0])
+
 reporter = QuakeConsoleReport.new(ARGV[0])
 puts reporter.print_report

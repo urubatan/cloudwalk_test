@@ -17,9 +17,9 @@ class ProcessUploadedLogJobTest < ActiveJob::TestCase
     assert_equal uploaded_log.games.count, 1
     game = uploaded_log.games.first
     assert_equal game.total_kills, 4
-    assert_equal game.players.map(&:name), ["Isgalamido", "Zeh", "Dono da Bola"]
-    assert_equal game.players.each_with_object({}) { |player,acc| acc[player.name] = player.kill_count  }, { 'Isgalamido' => 1, 'Zeh' => -2, 'Dono da Bola' => -1 }
-    assert_equal game.kill_by_means.each_with_object({}) { |kbm,acc| acc[kbm.mean] = kbm.kill_count }, { 'MOD_ROCKET' => 1, 'MOD_TRIGGER_HURT' => 2, 'MOD_FALLING' => 1 }
+    assert_equal game.players.map(&:name), ['Isgalamido', 'Zeh', 'Dono da Bola']
+    assert_equal game.players.each_with_object({}) { |player, acc| acc[player.name] = player.kill_count }, { 'Isgalamido' => 1, 'Zeh' => -2, 'Dono da Bola' => -1 }
+    assert_equal game.kill_by_means.each_with_object({}) { |kbm, acc| acc[kbm.mean] = kbm.kill_count }, { 'MOD_ROCKET' => 1, 'MOD_TRIGGER_HURT' => 2, 'MOD_FALLING' => 1 }
     assert_equal uploaded_log.player_rankings.map(&:player), ['Isgalamido', 'Dono da Bola', 'Zeh']
   end
 end
