@@ -17,3 +17,4 @@ General comments:
 * the implementation of the backend log parser only considers local storage and a single machine, this can be changed for more complex environments
 * the web version was implemented as a SPA using Hotwire/Stimulus and the lowest ammount of javascript possible
 * the automatic screen update after the backend log file finished is unreliable because I didn't want to add redis as a dependency for this small app
+* the error handling is non existent, it is possible to create an uploaded_log record without a file, what will cause an error in the processing job
